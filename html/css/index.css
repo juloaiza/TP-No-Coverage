@@ -1,0 +1,113 @@
+#map {
+  height: 100vh;
+}
+
+.row .col.map-panel {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 18px;
+}
+
+.row .col.sidebar {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 18px;
+}
+
+.sidebar-header {
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  /* width: 200px; */
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: rgb(125, 124, 126);
+
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: rgb(125, 124, 126);
+
+  /* box-shadow: -10px 0px 10px 1px #aaaaaa; */
+}
+
+.sidebar-body {
+  /* padding-top: 20px;
+    padding-bottom: 20px; */
+  /* display: block; */
+  height: 85vh;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: rgb(125, 124, 126);
+
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: rgb(125, 124, 126);
+}
+
+#progress-bar {
+  display: none;
+}
+
+/* .legend {
+  line-height: 18px;
+  color: #555;
+  background-color: azure;
+}
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+} */
+
+#map
+  > div.leaflet-control-container
+  > div.leaflet-bottom.leaflet-right
+  > div.info.legend.leaflet-control {
+  background: rgba(34, 34, 34, 0.644);
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.767);
+}
+.legenditem {
+  white-space: nowrap;
+  margin-top: 5px;
+  display: flex;
+  margin-left: 25px;
+}
+
+.legend {
+  line-height: 18px;
+  color: rgb(169, 169, 169);
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+/* .modal {
+  left: 0;
+
+  right: 0;
+
+  background-color: #fafafa;
+
+  padding: 0;
+
+  max-height: 40%;
+
+  width: 35%;
+
+  will-change: top, opacity;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+} */
