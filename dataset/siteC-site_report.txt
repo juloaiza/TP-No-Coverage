@@ -1,0 +1,11 @@
+
+	--==[ SPLAT! HD v1.4.2 Site Analysis Report For: siteC ]==--
+
+---------------------------------------------------------------------------
+
+Site location: 39.6887 North / 106.9445 West (39° 41' 19" N / 106° 56' 40" W)
+Ground elevation: 2229.00 meters AMSL
+Antenna height: 2.13 meters AGL / 2231.13 meters AMSL
+
+---------------------------------------------------------------------------
+

@@ -45,7 +45,7 @@
         </div>
 
         <div class="white lighten-2 sidebar-body">
-          <div class="nav-wrapper">
+          <!-- <div class="nav-wrapper">
             <form>
               <div class="input-field">
                 <input
@@ -60,9 +60,72 @@
                 <i class="material-icons">close</i>
               </div>
             </form>
-          </div>
+          </div> -->
 
           <div class="container">
+            <div class="card">
+              <div class="card-content">
+                <!-- <span class="card-title">New COW</span> -->
+                <h6>COW Info</h6>
+                <div class="input-field">
+                  <input
+                    id="lat"
+                    type="number"
+                    class="validate"
+                    value="39.618783"
+                  />
+                  <label for="lat">Latitude</label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    id="lng"
+                    type="number"
+                    class="validate"
+                    value="-107.012868"
+                  />
+                  <label for="lng">Longitude</label>
+                </div>
+
+                <div class="input-field">
+                  <input
+                    id="txh"
+                    type="number"
+                    class="validate"
+                    value="4.371"
+                  />
+                  <label for="txh">TX Height (m)</label>
+                </div>
+
+                <div class="input-field">
+                  <input id="erp" type="number" class="validate" value="31" />
+                  <label for="erp">Max Power (dBm)</label>
+                </div>
+              </div>
+              <div class="card-action">
+                <button
+                  id="addBtn"
+                  class="waves-effect blue lighten-2 btn"
+                  onclick="add()"
+                  type="button"
+                >
+                  <span>Add</span>
+                </button>
+
+                <div style="width: 32%; display:inline-block;"></div>
+                <button
+                  id="predictBtn"
+                  class="waves-effect blue lighten-2 btn"
+                  onclick="run()"
+                  type="button"
+                >
+                  <span>Predict</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="container">
             <div class="card-panel">
               <ul>
                 <li><h6>Emergency Event</h6></li>
@@ -75,7 +138,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <div class="container">
             <div class=".center-align">
@@ -100,10 +163,6 @@
                 </ul>
               </div>
 
-              <button class="blue lighten-2 btn" onclick="run()" type="button">
-                <span>Run</span>
-              </button>
-
               <div class="blue lighten-5 progress" id="progress-bar">
                 <div class="blue lighten-1 indeterminate"></div>
               </div>
@@ -119,7 +178,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script src="js/geohex.min.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/data.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/cow.js"></script>
+    <script src="js/legend.js"></script>
   </body>
 </html>

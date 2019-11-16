@@ -1,0 +1,21 @@
+
+	--==[ SPLAT! HD v1.4.2 Site Analysis Report For: siteA-training ]==--
+
+---------------------------------------------------------------------------
+
+Site location: 39.6188 North / 107.0129 West (39° 37' 7" N / 107° 0' 46" W)
+Ground elevation: 2398.00 meters AMSL
+Antenna height: 4.37 meters AGL / 2402.37 meters AMSL
+Antenna height above average terrain: 85.71 meters
+
+Average terrain at   0 degrees azimuth: 2175.60 meters AMSL
+Average terrain at  45 degrees azimuth: 2227.51 meters AMSL
+Average terrain at  90 degrees azimuth: 2118.53 meters AMSL
+Average terrain at 135 degrees azimuth: 2423.65 meters AMSL
+Average terrain at 180 degrees azimuth: 2595.92 meters AMSL
+Average terrain at 225 degrees azimuth: 2548.88 meters AMSL
+Average terrain at 270 degrees azimuth: 2241.26 meters AMSL
+Average terrain at 315 degrees azimuth: 2201.90 meters AMSL
+
+---------------------------------------------------------------------------
+
