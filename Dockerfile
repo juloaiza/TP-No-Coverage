@@ -12,15 +12,31 @@ RUN apt-get update \
 
 
 #Working directory
-WORKDIR /splat-work
+WORKDIR /app/Signal-Server
 
 # Copy slpat
-COPY ./splat-1.4.2 ./
+COPY ./Signal-Server ./
 
-RUN ./configure
+RUN make
+RUN mkdir /app/Signal-Server/bin
+RUN mv signalserver signalserverHD signalserverLIDAR ./bin
 
-FROM splat
+FROM python:3.7.3-slim-stretch
+
+# Update repos and install dependencies
+RUN apt-get update \
+    && apt-get -y install imagemagick
+
+#Copy splat/signal-server
+COPY --from=splat /app/Signal-Server/bin/ /usr/local/bin/
 
 # Working directory
 WORKDIR /app
 
+# Packages that we need 
+COPY requirement.txt ./
+
+# instruction to be run during image build
+RUN pip install --no-cache-dir -r requirement.txt
+
+# ENTRYPOINT ["/bin/sh", "-c", "cd /app/src; python /app/src/server.py"]

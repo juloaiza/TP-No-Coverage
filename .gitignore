@@ -1,0 +1,19 @@
+/dataset/*
+/output/*
+/papers/*
+/splat-1.4.2/*
+README2.md
+
+# Compiled Object files
+/Signal-Server/*.slo
+/Signal-Server/*.lo
+/Signal-Server/*.o
+
+# Compiled Dynamic libraries
+/Signal-Server/*.so
+/Signal-Server/*.dylib
+
+# Compiled Static libraries
+/Signal-Server/*.lai
+/Signal-Server/*.la
+/Signal-Server/*.a

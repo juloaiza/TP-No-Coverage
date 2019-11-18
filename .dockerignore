@@ -1,0 +1,11 @@
+.git
+/dataset/*
+/html/*
+/output/*
+/papers/*
+/splat-1.4.2/*
+/src/*
+Dockerfile
+.DS_Store
+.gitignore
+README.md

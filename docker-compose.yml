@@ -1,0 +1,31 @@
+version: "3"
+services:
+  web-nginx:
+    image: nginx
+    container_name: nginx
+    depends_on:
+      - splat
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./nginx-conf/site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - my-network
+    ports:
+      - "80:80"
+  splat:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    # container_name: splat
+    volumes:
+      - ./:/app
+    command: /bin/sh -c 'cd /app/src; python /app/src/server.py'
+    networks:
+      my-network:
+        aliases:
+          - flask-app
+    ports:
+      - "8080:5000"
+
+networks:
+  my-network:
