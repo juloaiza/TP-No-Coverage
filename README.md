@@ -15,3 +15,7 @@ For first time setup, internet connection and Docker CE are required.
 ## Access
 
 Open Chrome and go to http://localhost/
+
+## Slide Deck
+
+https://docs.google.com/presentation/d/1DHU2eOPL8XYiqDPCtQgQ70I8Bm9JWTH4VWtO-kXESzY/edit#slide=id.p
