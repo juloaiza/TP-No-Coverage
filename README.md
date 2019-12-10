@@ -12,6 +12,13 @@ $ docker-compose up -d
 
 For first time setup, internet connection and Docker CE are required.
 
+## Rebuild Container
+
+```sh
+$ docker-compose build
+$ docker-compose up -d
+```
+
 ## Access
 
 Open Chrome and go to http://localhost/
@@ -19,3 +26,7 @@ Open Chrome and go to http://localhost/
 ## Slide Deck
 
 https://docs.google.com/presentation/d/1DHU2eOPL8XYiqDPCtQgQ70I8Bm9JWTH4VWtO-kXESzY/edit#slide=id.p
+
+## Demo Video
+
+https://youtu.be/Tlb997rviMI
