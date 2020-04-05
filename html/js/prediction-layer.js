@@ -4,9 +4,11 @@ var predictCoverageCheckbox = document.querySelector('input[value="pc"]');
 
 predictCoverageCheckbox.onchange = function() {
   if (predictCoverageCheckbox.checked) {
-    map.addLayer(overlay);
+    //map.addLayer(overlay);
+    map.addLayer(geoPredicted);
   } else {
-    map.removeLayer(overlay);
+    //map.removeLayer(overlay);
+    map.removeLayer(geoPredicted);
   }
 };
 
@@ -16,11 +18,12 @@ function run() {
 
   $("#predictBtn").prop("disabled", true);
   if (first_run) {
-    map.removeLayer(overlay);
+    //map.removeLayer(overlay);
+    map.removeLayer(geoPredicted);
   }
 
   dev_link = "http://127.0.0.1:5000/api/create-prediction";
-  prod_link = "http://127.0.0.1:8080/api/create-prediction";
+  prod_link = "http://192.168.1.228:8080/api/create-prediction";
   fetch(prod_link, {
     method: "POST",
     headers: {
@@ -37,25 +40,27 @@ function run() {
     .then(function(response) {
       return response.json();
     })
-    .then(function(data) {
-      console.log(data);
+    .then(function(predicted_coverage) {
+      console.log("processing geojson...");
 
-      //Add prediction layer
-      //   var bounds = new L.LatLngBounds(
-      //     new L.LatLng(39.64795, -106.97509), //NE
-      //     new L.LatLng(39.589616, -107.050646) //SW
-      //   );
+      // var bounds = new L.LatLngBounds(
+      //   new L.LatLng(data.NE.lat, data.NE.lng), //NE
+      //   new L.LatLng(data.SW.lat, data.SW.lng) //SW
+      // );
 
-      var bounds = new L.LatLngBounds(
-        new L.LatLng(data.NE.lat, data.NE.lng), //NE
-        new L.LatLng(data.SW.lat, data.SW.lng) //SW
-      );
+      // overlay = new L.ImageOverlay("images/pl.png", bounds, {
+      //   opacity: 0.6
+      // });
 
-      overlay = new L.ImageOverlay("images/pl.png", bounds, {
-        opacity: 0.6
+      predicted_array = get_coverage(predicted_coverage);
+
+      geoPredicted = L.geoJSON(predicted_array, {
+        style: rsrpStyle_video,
+        onEachFeature: onEachFeature
       });
 
-      map.addLayer(overlay);
+      //map.addLayer(overlay);
+      map.addLayer(geoPredicted);
       elem.style.display = "none";
 
       predictCoverageCheckbox.removeAttribute("disabled");

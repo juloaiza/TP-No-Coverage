@@ -16,6 +16,12 @@
 #include "models/sui.hh"
 #include "image.hh"
 
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
 void DoPathLoss(char *filename, unsigned char geo, unsigned char kml,
 		unsigned char ngs, struct site *xmtr, unsigned char txsites)
 {
@@ -510,6 +516,7 @@ int DoSigStr(char *filename, unsigned char geo, unsigned char kml,
 	return 0;
 }
 
+//Recieved Signal Power
 void DoRxdPwr(char *filename, unsigned char geo, unsigned char kml,
 	      unsigned char ngs, struct site *xmtr, unsigned char txsites)
 {
@@ -582,6 +589,11 @@ void DoRxdPwr(char *filename, unsigned char geo, unsigned char kml,
 		fflush(stderr);
 	}
 
+    //Save alphanumeric output
+	ofstream RxdPwr_output;
+    RxdPwr_output.open ("coverage.dat");
+    RxdPwr_output<<"lat,lon,rsrp \n";
+
 	// Draw image of x by y pixels
 	for (y = 0, lat = north; y < (int)height;
 	     y++, lat = north - (dpp * (double)y)) {
@@ -631,6 +643,11 @@ void DoRxdPwr(char *filename, unsigned char geo, unsigned char kml,
 						    && dBm >= region.level[z])
 							match = z;
 					}
+				}
+                
+				//Write Recieved Signal Power dBm
+				if (dBm >= -140){
+				    RxdPwr_output << lat << "," << -1 * lon << "," << dBm << endl;
 				}
 
 				if (match < region.levels) {
@@ -753,7 +770,9 @@ void DoRxdPwr(char *filename, unsigned char geo, unsigned char kml,
 		fclose(fd);
 		fd = NULL;
 	}
-
+    
+	//Close alphanumeric output file
+	RxdPwr_output.close();
 }
 
 void DoLOS(char *filename, unsigned char geo, unsigned char kml,

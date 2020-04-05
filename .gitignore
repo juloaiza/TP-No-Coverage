@@ -1,3 +1,5 @@
+/qgis/*
+/layers/*
 /dataset/*
 /output/*
 /papers/*

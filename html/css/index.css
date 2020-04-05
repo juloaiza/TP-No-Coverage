@@ -22,13 +22,13 @@
   justify-content: center;
   height: 15vh;
   /* width: 200px; */
-  border-left-style: solid;
+  /* border-left-style: solid;
   border-left-width: 1px;
   border-left-color: rgb(125, 124, 126);
 
   border-right-style: solid;
   border-right-width: 1px;
-  border-right-color: rgb(125, 124, 126);
+  border-right-color: rgb(125, 124, 126); */
 
   /* box-shadow: -10px 0px 10px 1px #aaaaaa; */
 }
@@ -37,14 +37,15 @@
   /* padding-top: 20px;
     padding-bottom: 20px; */
   /* display: block; */
-  height: 85vh;
+  /* height: 85vh;
   border-left-style: solid;
   border-left-width: 1px;
   border-left-color: rgb(125, 124, 126);
 
   border-right-style: solid;
   border-right-width: 1px;
-  border-right-color: rgb(125, 124, 126);
+  border-right-color: rgb(125, 124, 126); */
+  margin-top: 30px;
 }
 
 #progress-bar {
@@ -110,4 +111,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
+} */
+
+/* .leaflet-popup-content {
+  width: 220px;
 } */

@@ -1,10 +1,10 @@
 #!/usr/bin python
 #title           :server.py
-# description     :API server to predict coverage.
+# description     :API server for coverage prediction.
 # author          :Julian Loaiza
 #email           :julian.loaiza@gmail.com
 #date            :20191115
-#version         :0.1
+# version         :0.1.0
 # usage           :python server.py
 # notes           :
 #python_version  :3.7
@@ -26,10 +26,36 @@ import hashlib
 
 import subprocess
 
+import csv
+import json
+
 
 def dbm_to_w(dBm):
     """This function converts a power given in dBm to a power given in W."""
     return round(10**((dBm-30)/10.), 1)
+
+
+def dat_to_json(path):
+    '''This function parse csv to geojson'''
+
+    csvFile = open(path, "r")
+    csvFile.readline()  # skip header
+    table = csv.reader(csvFile)
+    data = []
+
+    for row in table:
+        rowLine = {}
+        rowLine['Latitude'] = float(row[0])
+        rowLine['Longitude'] = float(row[1])
+        rowLine['RSRP'] = int(row[2])
+        data.append(rowLine)
+
+    csvFile.close()
+
+    with open('../server/project/prediction.json', 'w') as outfile:
+        json.dump(data, outfile)
+
+    return data
 
 
 def create_prediction(cow_parameters):
@@ -55,7 +81,9 @@ def create_prediction(cow_parameters):
 
     stdout, stderr = proc.communicate()
 
-    os.system('convert coverage.ppm -transparent white ../html/images/pl.png')
+    #os.system('convert coverage.ppm -transparent white ../html/images/pl.png')
+
+    prediction = dat_to_json('coverage.dat')
 
     bbox = stdout.decode().split('|')
 
@@ -66,7 +94,8 @@ def create_prediction(cow_parameters):
     print(elapsed)
     print()
 
-    return {'NE': {'lat': float(bbox[1]), 'lng': float(bbox[2])}, 'SW': {'lat': float(bbox[3]), 'lng': float(bbox[4])}}
+    # {'NE': {'lat': float(bbox[1]), 'lng': float(bbox[2])}, 'SW': {'lat': float(bbox[3]), 'lng': float(bbox[4])}}
+    return prediction
 
 
 app = Flask(__name__)
@@ -79,8 +108,14 @@ def create_map():
     print('POST request')
     req_data = request.get_json()
     print(req_data)
-    bbox = create_prediction(req_data)
-    response = jsonify(bbox)
+    prediction = create_prediction(req_data)
+    response = jsonify(prediction)
+    return response
+
+
+@app.route("/api/test", methods=['GET'])
+def test():
+    response = "Flask server is working"
     return response
 
 

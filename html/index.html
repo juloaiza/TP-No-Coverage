@@ -31,8 +31,7 @@
         <!-- Teal page content  -->
 
         <div class="blue lighten-2 sidebar-header">
-          <img src="images/logo1.png" width="220" height="200" alt="FR" />
-          <!-- <h2><span class="white-text lighten-3">GPRT</span></h2> -->
+          <img src="images/logo1.png" width="280" height="200" alt="ER" />
         </div>
 
         <div class="white lighten-2 sidebar-body">
@@ -53,10 +52,9 @@
             </form>
           </div> -->
 
-          <div class="container">
+          <!-- <div class="container">
             <div class="card">
               <div class="card-content">
-                <!-- <span class="card-title">New COW</span> -->
                 <h6>COW Info</h6>
                 <div class="input-field">
                   <input
@@ -114,7 +112,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div class="container">
             <div class="card-panel">
@@ -137,20 +135,67 @@
 
               <div class="card-panel">
                 <ul>
-                  <li><h6>Map Type</h6></li>
+                  <li><h6>Coverage</h6></li>
                   <li>
                     <label>
                       <input type="checkbox" value="pc" disabled />
-                      <span>Prediction Coverage</span>
+                      <span>Expected</span>
                     </label>
                   </li>
 
                   <li>
                     <label>
                       <input type="checkbox" value="mc" />
-                      <span>Measured Coverage</span>
+                      <span>Measured</span>
                     </label>
                   </li>
+
+                  <li>
+                    <label>
+                      <input type="checkbox" value="cc" />
+                      <span>Combined</span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="container">
+            <div class=".center-align">
+              <!-- <a class="pink lighten-1 btn">Run</a> -->
+
+              <div class="card-panel">
+                <ul>
+                  <li><h6>Service Type</h6></li>
+                  <!-- <select>
+                    <option value="1" selected>Video Call</option>
+                    <option value="2">Voice Call</option>
+                    <option value="3">SMS/Text</option>
+                  </select> -->
+
+                  <li>
+                    <label>
+                      <input name="coverage" type="radio" checked value="1" />
+                      <span>Video Call</span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input name="coverage" type="radio" value="2" />
+                      <span>Voice Call</span>
+                    </label>
+                  </li>
+
+                  <li>
+                    <label>
+                      <input name="coverage" type="radio" value="3" />
+                      <span>SMS/Text</span>
+                    </label>
+                  </li>
+
+                  <!-- <label>Materialize Select</label> -->
                 </ul>
               </div>
 
@@ -159,18 +204,45 @@
               </div>
             </div>
           </div>
+
+          <div class="container">
+            <div class=".center-align">
+              <!-- <a class="pink lighten-1 btn">Run</a> -->
+
+              <div class="card-panel">
+                <ul>
+                  <li><h6>Upload Measured Coverage</h6></li>
+                  <li>
+                    <form action="#">
+                      <div class="file-field input-field">
+                        <div class="waves-effect blue lighten-2 btn-small">
+                          <span><i class="material-icons">file_upload</i></span>
+                          <input type="file" />
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" />
+                        </div>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Compiled and minified JavaScript -->
+    <script src="js/library/jquery-3.4.1.min.js"></script>
     <script src="js/library/materialize.min.js"></script>
     <script src="js/library/leaflet.js"></script>
-    <script src="js/library/jquery-3.4.1.min.js"></script>
+    <script src="js/library/underscore.min.js"></script>
 
     <script src="js/geohex.min.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/index.js"></script>
     <script src="js/cow.js"></script>
     <script src="js/legend.js"></script>

@@ -34,34 +34,110 @@ geoEvents = L.geoJSON(events, {
   }
 });
 
-measured_array = [];
-measured_coverage.forEach(function(el) {
-  var code = geohex.getZoneByLocation(el.Latitude, el.Longitude, 10);
-  // var coords = geohex.getZoneByCode(code).getPolygon();
-  // geohex.getZoneByCode(json[options.jsonField.id], json[options.jsonField.value]).getPolygonCoords()
-  feature_el = code.getPolygon();
-  feature_el.properties = { rsrp: el.RSRP };
-  measured_array.push(feature_el);
+measured_array = get_coverage(measured_coverage);
+
+predicted_array = get_coverage(predicted_coverage);
+
+combined_array = get_coverage(combined_coverage);
+
+function onEachFeature(feature, layer) {
+  // does this feature have a property named popupContent?
+  if (feature.properties && feature.properties.geohash) {
+    layer.bindPopup("RSRP: " + feature.properties.rsrp);
+  }
+}
+
+function rsrpStyle_video(feature) {
+  if (feature.properties.rsrp > -100) {
+    return {
+      fillColor: "#00FF00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else if (
+    feature.properties.rsrp <= -100 &&
+    feature.properties.rsrp > -105
+  ) {
+    return {
+      fillColor: "#FFFF00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else if (
+    feature.properties.rsrp <= -105 &&
+    feature.properties.rsrp > -110
+  ) {
+    return {
+      fillColor: "#FF9F00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else {
+    return {
+      fillColor: "#FF0000",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  }
+}
+
+function rsrpStyle_voice(feature) {
+  if (feature.properties.rsrp > -105) {
+    return {
+      fillColor: "#00FF00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else if (
+    feature.properties.rsrp <= -105 &&
+    feature.properties.rsrp > -110
+  ) {
+    return {
+      fillColor: "#FFFF00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else if (
+    feature.properties.rsrp <= -110 &&
+    feature.properties.rsrp > -115
+  ) {
+    return {
+      fillColor: "#FF9F00",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  } else {
+    return {
+      fillColor: "#FF0000",
+      fillOpacity: 0.4,
+      color: "gray",
+      weight: 0.6
+    };
+  }
+}
+
+//$(".output").append(JSON.stringify(predicted_array));
+
+geoPredicted = L.geoJSON(predicted_array, {
+  style: rsrpStyle_video,
+  onEachFeature: onEachFeature
 });
 
 geoMeasured = L.geoJSON(measured_array, {
-  style: function(feature) {
-    if (feature.properties.rsrp > -100) {
-      return { fillColor: "#00FF00", color: "gray", weight: 0.8 };
-    } else if (
-      feature.properties.rsrp <= -100 &&
-      feature.properties.rsrp > -105
-    ) {
-      return { fillColor: "#FFFF00", color: "gray", weight: 0.8 };
-    } else if (
-      feature.properties.rsrp <= -105 &&
-      feature.properties.rsrp > -110
-    ) {
-      return { fillColor: "#FF9F00", color: "gray", weight: 0.8 };
-    } else {
-      return { fillColor: "#FF0000", color: "gray", weight: 0.8 };
-    }
-  }
+  style: rsrpStyle_video,
+  onEachFeature: onEachFeature
+});
+
+geoCombined = L.geoJSON(combined_array, {
+  style: rsrpStyle_video,
+  onEachFeature: onEachFeature
 });
 
 //MapType
@@ -76,8 +152,20 @@ measuredCoverageCheckbox.onchange = function() {
   }
 };
 
+var combinedCoverageCheckbox = document.querySelector('input[value="cc"]');
+
+combinedCoverageCheckbox.onchange = function() {
+  if (combinedCoverageCheckbox.checked) {
+    map.addLayer(geoCombined);
+  } else {
+    map.removeLayer(geoCombined);
+  }
+};
+
 var elem = document.getElementById("progress-bar");
 
 var map_type;
 
 var first_run = false;
+
+//add(); //Add cow

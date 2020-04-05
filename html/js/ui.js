@@ -21,3 +21,21 @@ $(document).ready(function() {
     .keyup(doCheck)
     .focusout(doCheck);
 });
+
+$("input[type=radio][name=coverage]").change(function() {
+  var selected = this.value;
+  // console.log(selected);
+  if (selected == "1") {
+    geoPredicted.setStyle(rsrpStyle_video);
+    geoMeasured.setStyle(rsrpStyle_video);
+    geoCombined.setStyle(rsrpStyle_video);
+  } else if (selected == "2") {
+    geoPredicted.setStyle(rsrpStyle_voice);
+    geoMeasured.setStyle(rsrpStyle_voice);
+    geoCombined.setStyle(rsrpStyle_voice);
+  } else {
+    geoPredicted.setStyle(rsrpStyle_voice);
+    geoMeasured.setStyle(rsrpStyle_voice);
+    geoCombined.setStyle(rsrpStyle_voice);
+  }
+});
