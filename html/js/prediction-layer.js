@@ -22,9 +22,9 @@ function run() {
     map.removeLayer(geoPredicted);
   }
 
-  dev_link = "http://127.0.0.1:5000/api/create-prediction";
-  prod_link = "http://192.168.1.228:8080/api/create-prediction";
-  fetch(prod_link, {
+  // dev_link = "http://127.0.0.1:5000/api/create-prediction";
+  // prod_link = "http://192.168.1.228:8080/api/create-prediction";
+  fetch(PREDICTION_API, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -34,7 +34,7 @@ function run() {
       lat: parseFloat($("#lat").val()),
       lng: parseFloat($("#lng").val()),
       txh: parseFloat($("#txh").val()),
-      erp: parseFloat($("#erp").val())
+      erp: parseFloat($("#pwr").val())
     })
   })
     .then(function(response) {

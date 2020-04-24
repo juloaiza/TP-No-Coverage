@@ -116,3 +116,19 @@
 /* .leaflet-popup-content {
   width: 220px;
 } */
+
+.opacity {
+  opacity: 0.1;
+}
+
+#toast-container {
+  top: -2px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: 32%;
+  opacity: 0.8;
+}
+
+.not-visible {
+  visibility: hidden;
+}
