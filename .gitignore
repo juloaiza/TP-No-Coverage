@@ -19,3 +19,9 @@ README2.md
 /Signal-Server/*.lai
 /Signal-Server/*.la
 /Signal-Server/*.a
+
+#No Prediction
+/server/prediction/*.dat
+/server/prediction/*.dcf
+/server/prediction/*.json
+/server/prediction/*.ppm

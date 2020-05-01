@@ -1,4 +1,6 @@
 .git
+/qgis/*
+/layers/*
 /dataset/*
 /html/*
 /output/*
@@ -9,3 +11,9 @@ Dockerfile
 .DS_Store
 .gitignore
 README.md
+
+#No Prediction
+/server/prediction/*.dat
+/server/prediction/*.dcf
+/server/prediction/*.json
+/server/prediction/*.ppm

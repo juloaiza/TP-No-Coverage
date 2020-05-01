@@ -591,7 +591,8 @@ void DoRxdPwr(char *filename, unsigned char geo, unsigned char kml,
 
     //Save alphanumeric output
 	ofstream RxdPwr_output;
-    RxdPwr_output.open ("coverage.dat");
+	//std::string rawName(255, mapfile)
+    RxdPwr_output.open (filename + std::string(".dat"));
     RxdPwr_output<<"lat,lon,rsrp \n";
 
 	// Draw image of x by y pixels

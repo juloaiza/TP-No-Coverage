@@ -29,13 +29,14 @@ import subprocess
 import csv
 import json
 
+os.chdir("../server/prediction") #working directory
 
 def dbm_to_w(dBm):
     """This function converts a power given in dBm to a power given in W."""
     return round(10**((dBm-30)/10.), 1)
 
 
-def dat_to_json(path):
+def dat_to_json(path, fname):
     '''This function parse csv to geojson'''
 
     csvFile = open(path, "r")
@@ -52,7 +53,7 @@ def dat_to_json(path):
 
     csvFile.close()
 
-    with open('../server/project/prediction.json', 'w') as outfile:
+    with open(f'{fname}.json', 'w') as outfile:
         json.dump(data, outfile)
 
     return data
@@ -66,6 +67,7 @@ def create_prediction(cow_parameters):
     lng = cow_parameters['lng']
     txh = cow_parameters['txh']
     erp = dbm_to_w(cow_parameters['erp'])
+    fname = cow_parameters['fname']
 
     print(erp)
 
@@ -75,7 +77,7 @@ def create_prediction(cow_parameters):
     proc = subprocess.Popen(['signalserverHD', '-sdf', './elevation-hd', '-lat', str(lat), '-lon',
                              str(lng), '-txh', str(txh), '-f', '750', '-erp', str(
                                  erp), '-rxh', '1.5', '-rel', '98',
-                             '-o', 'coverage', '-R', '2', '-res', '3600', '-pm', '8', '-dbm'],
+                             '-o', fname, '-R', '2', '-res', '3600', '-pm', '8', '-dbm'],
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT)
 
@@ -83,7 +85,7 @@ def create_prediction(cow_parameters):
 
     #os.system('convert coverage.ppm -transparent white ../html/images/pl.png')
 
-    prediction = dat_to_json('coverage.dat')
+    prediction = dat_to_json(f'{fname}.dat', fname)
 
     bbox = stdout.decode().split('|')
 
@@ -107,6 +109,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 def create_map():
     print('POST request')
     req_data = request.get_json()
+    req_data['fname'] = str(uuid.uuid1())
     print(req_data)
     prediction = create_prediction(req_data)
     response = jsonify(prediction)
